@@ -1,7 +1,7 @@
 import streamlit as st
 
 from lib.parsers import parse_file, UnsupportedFileTypeError
-from lib.templates.definitions import TEMPLATES
+from lib.templates.definitions import COMPANY_SOLUTION_DESIGN_TEMPLATE
 from lib.review.run_review import run_review
 from lib.db import save_review_run
 from lib.ui import render_results
@@ -9,7 +9,7 @@ from lib.ui import render_results
 st.set_page_config(page_title="FS Review Utility", page_icon="📋", layout="centered")
 
 st.title("FS Review Utility")
-st.caption("Upload a document and select a template to run a structured completeness review.")
+st.caption("Upload a document to run a structured completeness review.")
 
 if "result" not in st.session_state:
     st.session_state.result = None
@@ -20,9 +20,8 @@ if st.session_state.result is not None:
         st.rerun()
     render_results(st.session_state.result, key_prefix="main_")
 else:
-    template_options = {t.name: t.id for t in TEMPLATES}
-    template_name = st.selectbox("Template", list(template_options.keys()), index=len(template_options) - 1)
-    template_id = template_options[template_name]
+    template_id = COMPANY_SOLUTION_DESIGN_TEMPLATE.id
+    st.caption(f"Template: **{COMPANY_SOLUTION_DESIGN_TEMPLATE.name}**")
 
     uploaded = st.file_uploader("Document (.docx, .pdf, .txt, .md)", type=["docx", "pdf", "txt", "md"])
 
