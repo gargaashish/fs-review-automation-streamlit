@@ -21,7 +21,7 @@ def _sec(key, aliases, severity, min_words, why, question, placeholders=None, ch
 
 COMPANY_SOLUTION_DESIGN_TEMPLATE = TemplateDefinition(
     id="company-solution-design",
-    name="Company FS Template (Solution Design Document)",
+    name="FS Template (Solution Design Document)",
     description="Matches the company's Solution Design Document FS template, including transport approval and testing-results checks.",
     disallow_extra_sections=True,
     required_sections=[
